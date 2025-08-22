@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Component Library Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header__content">
+                <h1 class="header__title">React Component Library Demo</h1>
+                <button class="btn btn--outline theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle__icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <div class="sidebar__content">
+                    <ul class="nav-menu">
+                        <li class="nav-menu__item">
+                            <button class="nav-menu__link active" data-page="overview" id="overviewTab">
+                                Overview
+                            </button>
+                        </li>
+                        <li class="nav-menu__item">
+                            <button class="nav-menu__link" data-page="inputfield" id="inputfieldTab">
+                                InputField Component
+                            </button>
+                        </li>
+                        <li class="nav-menu__item">
+                            <button class="nav-menu__link" data-page="datatable" id="datatableTab">
+                                DataTable Component
+                            </button>
+                        </li>
+                        <li class="nav-menu__item">
+                            <button class="nav-menu__link" data-page="documentation" id="documentationTab">
+                                Documentation
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Overview Page -->
+                <div class="page" id="overview-page">
+                    <div class="page__header">
+                        <h2>Component Library Overview</h2>
+                        <p>Explore our collection of reusable React components with TypeScript support.</p>
+                    </div>
+                    
+                    <div class="component-grid">
+                        <div class="card component-preview">
+                            <div class="card__body">
+                                <h3>InputField Component</h3>
+                                <p>Flexible input component with multiple variants, sizes, and states.</p>
+                                <div class="demo-input-preview">
+                                    <div class="input-field input-field--outlined">
+                                        <label class="input-field__label">Sample Input</label>
+                                        <input type="text" class="input-field__input" placeholder="Enter text here..." value="Demo value">
+                                    </div>
+                                </div>
+                                <button class="btn btn--primary mt-8" onclick="showPage('inputfield')">Explore InputField</button>
+                            </div>
+                        </div>
+
+                        <div class="card component-preview">
+                            <div class="card__body">
+                                <h3>DataTable Component</h3>
+                                <p>Feature-rich table component with sorting, selection, and more.</p>
+                                <div class="demo-table-preview">
+                                    <table class="data-table data-table--compact">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>John Doe</td>
+                                                <td>Admin</td>
+                                                <td><span class="status status--success">Active</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jane Smith</td>
+                                                <td>User</td>
+                                                <td><span class="status status--success">Active</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button class="btn btn--primary mt-8" onclick="showPage('datatable')">Explore DataTable</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- InputField Page -->
+                <div class="page hidden" id="inputfield-page">
+                    <div class="page__header">
+                        <h2>InputField Component</h2>
+                        <p>A flexible input component with multiple variants, sizes, and states.</p>
+                    </div>
+
+                    <!-- Interactive Playground -->
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Interactive Playground</h3>
+                            <div class="playground">
+                                <div class="playground__controls">
+                                    <div class="form-group">
+                                        <label class="form-label">Variant</label>
+                                        <select class="form-control" id="variantSelect">
+                                            <option value="outlined">Outlined</option>
+                                            <option value="filled">Filled</option>
+                                            <option value="ghost">Ghost</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Size</label>
+                                        <select class="form-control" id="sizeSelect">
+                                            <option value="sm">Small</option>
+                                            <option value="md" selected>Medium</option>
+                                            <option value="lg">Large</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Type</label>
+                                        <select class="form-control" id="typeSelect">
+                                            <option value="text">Text</option>
+                                            <option value="password">Password</option>
+                                            <option value="email">Email</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="disabledCheck"> Disabled
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="invalidCheck"> Invalid
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="loadingCheck"> Loading
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="clearButtonCheck"> Show Clear Button
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="playground__preview">
+                                    <div class="input-field input-field--outlined" id="playgroundInput">
+                                        <label class="input-field__label">Playground Input</label>
+                                        <div class="input-field__wrapper">
+                                            <input type="text" class="input-field__input" placeholder="Enter text here..." value="">
+                                            <button class="input-field__clear hidden" type="button">×</button>
+                                            <div class="input-field__loading hidden">
+                                                <div class="spinner"></div>
+                                            </div>
+                                        </div>
+                                        <div class="input-field__helper">Helper text goes here</div>
+                                        <div class="input-field__error hidden">This field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Examples Section -->
+                    <div class="examples-section">
+                        <h3>Examples</h3>
+                        
+                        <div class="example-group">
+                            <h4>Variants</h4>
+                            <div class="example-grid">
+                                <div class="input-field input-field--outlined">
+                                    <label class="input-field__label">Outlined</label>
+                                    <input type="text" class="input-field__input" placeholder="Outlined variant">
+                                </div>
+                                <div class="input-field input-field--filled">
+                                    <label class="input-field__label">Filled</label>
+                                    <input type="text" class="input-field__input" placeholder="Filled variant">
+                                </div>
+                                <div class="input-field input-field--ghost">
+                                    <label class="input-field__label">Ghost</label>
+                                    <input type="text" class="input-field__input" placeholder="Ghost variant">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="example-group">
+                            <h4>Sizes</h4>
+                            <div class="example-grid">
+                                <div class="input-field input-field--outlined input-field--sm">
+                                    <label class="input-field__label">Small</label>
+                                    <input type="text" class="input-field__input" placeholder="Small size">
+                                </div>
+                                <div class="input-field input-field--outlined input-field--md">
+                                    <label class="input-field__label">Medium</label>
+                                    <input type="text" class="input-field__input" placeholder="Medium size">
+                                </div>
+                                <div class="input-field input-field--outlined input-field--lg">
+                                    <label class="input-field__label">Large</label>
+                                    <input type="text" class="input-field__input" placeholder="Large size">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="example-group">
+                            <h4>States</h4>
+                            <div class="example-grid">
+                                <div class="input-field input-field--outlined input-field--disabled">
+                                    <label class="input-field__label">Disabled</label>
+                                    <input type="text" class="input-field__input" placeholder="Disabled state" disabled>
+                                </div>
+                                <div class="input-field input-field--outlined input-field--invalid">
+                                    <label class="input-field__label">Invalid</label>
+                                    <input type="text" class="input-field__input" placeholder="Invalid state" value="Invalid input">
+                                    <div class="input-field__error">This field has an error</div>
+                                </div>
+                                <div class="input-field input-field--outlined input-field--loading">
+                                    <label class="input-field__label">Loading</label>
+                                    <div class="input-field__wrapper">
+                                        <input type="text" class="input-field__input" placeholder="Loading state">
+                                        <div class="input-field__loading">
+                                            <div class="spinner"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataTable Page -->
+                <div class="page hidden" id="datatable-page">
+                    <div class="page__header">
+                        <h2>DataTable Component</h2>
+                        <p>Feature-rich table component with sorting, selection, and loading states.</p>
+                    </div>
+
+                    <div class="table-demo-controls">
+                        <div class="demo-tabs">
+                            <button class="demo-tab active" data-demo="users" onclick="showTableDemo('users')">Users</button>
+                            <button class="demo-tab" data-demo="products" onclick="showTableDemo('products')">Products</button>
+                            <button class="demo-tab" data-demo="orders" onclick="showTableDemo('orders')">Orders</button>
+                            <button class="demo-tab" data-demo="loading" onclick="showTableDemo('loading')">Loading State</button>
+                            <button class="demo-tab" data-demo="empty" onclick="showTableDemo('empty')">Empty State</button>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
+                    <div class="table-demo" id="users-demo">
+                        <div class="card">
+                            <div class="card__body">
+                                <div class="table-header">
+                                    <h3>Users</h3>
+                                    <div class="table-actions">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="selectAllUsers"> Select All
+                                        </label>
+                                        <span class="selected-count" id="usersSelectedCount">0 selected</span>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table" id="usersTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="data-table__checkbox">
+                                                    <input type="checkbox" class="select-all-checkbox">
+                                                </th>
+                                                <th class="sortable" data-column="name">
+                                                    Name <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="email">
+                                                    Email <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="role">
+                                                    Role <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="status">
+                                                    Status <span class="sort-icon">↕</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="usersTableBody">
+                                            <!-- Users data will be inserted here by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Table -->
+                    <div class="table-demo hidden" id="products-demo">
+                        <div class="card">
+                            <div class="card__body">
+                                <div class="table-header">
+                                    <h3>Products</h3>
+                                    <div class="table-actions">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="selectAllProducts"> Select All
+                                        </label>
+                                        <span class="selected-count" id="productsSelectedCount">0 selected</span>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table" id="productsTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="data-table__checkbox">
+                                                    <input type="checkbox" class="select-all-checkbox">
+                                                </th>
+                                                <th class="sortable" data-column="name">
+                                                    Name <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="category">
+                                                    Category <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="price">
+                                                    Price <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="stock">
+                                                    Stock <span class="sort-icon">↕</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productsTableBody">
+                                            <!-- Products data will be inserted here by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Table -->
+                    <div class="table-demo hidden" id="orders-demo">
+                        <div class="card">
+                            <div class="card__body">
+                                <div class="table-header">
+                                    <h3>Orders</h3>
+                                    <div class="table-actions">
+                                        <label class="form-label">
+                                            <input type="checkbox" id="selectAllOrders"> Select All
+                                        </label>
+                                        <span class="selected-count" id="ordersSelectedCount">0 selected</span>
+                                    </div>
+                                </div>
+                                <div class="table-container">
+                                    <table class="data-table" id="ordersTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="data-table__checkbox">
+                                                    <input type="checkbox" class="select-all-checkbox">
+                                                </th>
+                                                <th class="sortable" data-column="id">
+                                                    Order ID <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="customer">
+                                                    Customer <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="date">
+                                                    Date <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="amount">
+                                                    Amount <span class="sort-icon">↕</span>
+                                                </th>
+                                                <th class="sortable" data-column="status">
+                                                    Status <span class="sort-icon">↕</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ordersTableBody">
+                                            <!-- Orders data will be inserted here by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loading State Demo -->
+                    <div class="table-demo hidden" id="loading-demo">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Loading State</h3>
+                                <div class="table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="skeleton-row">
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                            </tr>
+                                            <tr class="skeleton-row">
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                            </tr>
+                                            <tr class="skeleton-row">
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                                <td><div class="skeleton"></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty State Demo -->
+                    <div class="table-demo hidden" id="empty-demo">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Empty State</h3>
+                                <div class="table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="empty-state">
+                                                <td colspan="4">
+                                                    <div class="empty-state__content">
+                                                        <div class="empty-state__icon">📋</div>
+                                                        <h4>No data available</h4>
+                                                        <p>There are no items to display at this time.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentation Page -->
+                <div class="page hidden" id="documentation-page">
+                    <div class="page__header">
+                        <h2>Documentation</h2>
+                        <p>Complete guide to using our React component library.</p>
+                    </div>
+
+                    <div class="documentation">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Installation</h3>
+                                <pre><code>npm install @your-org/component-library
+# or
+yarn add @your-org/component-library</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>InputField Component</h3>
+                                <h4>Basic Usage</h4>
+                                <pre><code>import { InputField } from '@your-org/component-library';
+
+function MyForm() {
+  const [value, setValue] = useState('');
+  
+  return (
+    &lt;InputField
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      label="Email Address"
+      placeholder="Enter your email"
+      type="email"
+      variant="outlined"
+      size="md"
+    /&gt;
+  );
+}</code></pre>
+                                
+                                <h4>Props API</h4>
+                                <div class="table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Prop</th>
+                                                <th>Type</th>
+                                                <th>Default</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>value</code></td>
+                                                <td>string</td>
+                                                <td>-</td>
+                                                <td>The input value</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>onChange</code></td>
+                                                <td>function</td>
+                                                <td>-</td>
+                                                <td>Change event handler</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>variant</code></td>
+                                                <td>'filled' | 'outlined' | 'ghost'</td>
+                                                <td>'outlined'</td>
+                                                <td>Visual variant</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>size</code></td>
+                                                <td>'sm' | 'md' | 'lg'</td>
+                                                <td>'md'</td>
+                                                <td>Size variant</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>disabled</code></td>
+                                                <td>boolean</td>
+                                                <td>false</td>
+                                                <td>Disable the input</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>invalid</code></td>
+                                                <td>boolean</td>
+                                                <td>false</td>
+                                                <td>Show error state</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>DataTable Component</h3>
+                                <h4>Basic Usage</h4>
+                                <pre><code>import { DataTable } from '@your-org/component-library';
+
+const columns = [
+  { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
+  { key: 'email', title: 'Email', dataIndex: 'email', sortable: true },
+  { 
+    key: 'status', 
+    title: 'Status', 
+    dataIndex: 'status',
+    render: (value) => &lt;Badge variant={value === 'Active' ? 'success' : 'warning'}&gt;{value}&lt;/Badge&gt;
+  }
+];
+
+function UserTable() {
+  const [selectedRows, setSelectedRows] = useState([]);
+  
+  return (
+    &lt;DataTable
+      data={users}
+      columns={columns}
+      selectable
+      onRowSelect={setSelectedRows}
+    /&gt;
+  );
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Accessibility Features</h3>
+                                <ul>
+                                    <li><strong>Keyboard Navigation:</strong> Full keyboard support for all interactive elements</li>
+                                    <li><strong>Screen Reader Support:</strong> Proper ARIA labels and descriptions</li>
+                                    <li><strong>Focus Management:</strong> Clear focus indicators and logical tab order</li>
+                                    <li><strong>High Contrast:</strong> Supports high contrast mode and color themes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
